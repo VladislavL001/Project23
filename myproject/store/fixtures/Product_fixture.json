@@ -1,0 +1,67 @@
+[
+{
+    "model": "store.product",
+    "pk": 4,
+    "fields": {
+        "name": "Samsung Galaxy S23",
+        "description": "Флагманский смартфон Samsung",
+        "image": "",
+        "category": 3,
+        "price": "72990.00",
+        "created_at": "2026-03-02T18:00:26.939Z",
+        "updated_at": "2026-03-02T18:00:26.939Z"
+    }
+},
+{
+    "model": "store.product",
+    "pk": 5,
+    "fields": {
+        "name": "MacBook Air M2",
+        "description": "Ноутбук Apple с процессором M2",
+        "image": "",
+        "category": 4,
+        "price": "119990.00",
+        "created_at": "2026-03-02T18:00:26.941Z",
+        "updated_at": "2026-03-02T18:00:26.941Z"
+    }
+},
+{
+    "model": "store.product",
+    "pk": 6,
+    "fields": {
+        "name": "Dell XPS 13",
+        "description": "Компактный ноутбук премиум-класса",
+        "image": "",
+        "category": 4,
+        "price": "109990.00",
+        "created_at": "2026-03-02T18:00:26.942Z",
+        "updated_at": "2026-03-02T18:00:26.942Z"
+    }
+},
+{
+    "model": "store.product",
+    "pk": 7,
+    "fields": {
+        "name": "iPad Pro 12.9",
+        "description": "Профессиональный планшет Apple",
+        "image": "",
+        "category": 5,
+        "price": "99990.00",
+        "created_at": "2026-03-02T18:00:26.943Z",
+        "updated_at": "2026-03-02T18:00:26.943Z"
+    }
+},
+{
+    "model": "store.product",
+    "pk": 8,
+    "fields": {
+        "name": "Чехол для iPhone 13",
+        "description": "Силиконовый чехол оригинальный",
+        "image": "",
+        "category": 6,
+        "price": "3990.00",
+        "created_at": "2026-03-02T18:00:26.944Z",
+        "updated_at": "2026-03-02T18:00:26.944Z"
+    }
+}
+]
