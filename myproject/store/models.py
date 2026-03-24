@@ -3,14 +3,12 @@ from django.db import models
 
 class Category(models.Model):
     """Модель категории товаров"""
-    name = models.CharField(
-        max_length=100,
-        verbose_name="Наименование"
-    )
+
+    name = models.CharField(max_length=100, verbose_name="Наименование")
     description = models.TextField(
         verbose_name="Описание",
         blank=True,  # Поле может быть пустым
-        null=True  # Разрешить NULL в базе данных
+        null=True,  # Разрешить NULL в базе данных
     )
 
     class Meta:
@@ -22,42 +20,35 @@ class Category(models.Model):
         return self.name
 
 
-
 class Product(models.Model):
     """Модель товара"""
-    name = models.CharField(
-        max_length=200,
-        verbose_name="Наименование"
-    )
-    description = models.TextField(
-        verbose_name="Описание",
-        blank=True,
-        null=True
-    )
+
+    name = models.CharField(max_length=200, verbose_name="Наименование")
+    description = models.TextField(verbose_name="Описание", blank=True, null=True)
     image = models.ImageField(
-        upload_to='products/',  # Папка для загрузки изображений
+        upload_to="products/",  # Папка для загрузки изображений
         verbose_name="Изображение",
         blank=True,
-        null=True
+        null=True,
     )
     category = models.ForeignKey(
         Category,
         on_delete=models.CASCADE,  # При удалении категории удаляются все товары
         related_name="products",  # Для обратной связи category.products.all()
-        verbose_name="Категория"
+        verbose_name="Категория",
     )
     price = models.DecimalField(
         max_digits=10,  # Максимальное количество цифр
         decimal_places=2,  # Количество знаков после запятой
-        verbose_name="Цена за покупку"
+        verbose_name="Цена за покупку",
     )
     created_at = models.DateTimeField(
         auto_now_add=True,  # Автоматически устанавливается при создании
-        verbose_name="Дата создания"
+        verbose_name="Дата создания",
     )
     updated_at = models.DateTimeField(
         auto_now=True,  # Автоматически обновляется при сохранении
-        verbose_name="Дата последнего изменения"
+        verbose_name="Дата последнего изменения",
     )
 
     class Meta:
@@ -67,4 +58,3 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
-
