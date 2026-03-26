@@ -1,9 +1,8 @@
 from django.shortcuts import render
-
-from myproject.store.models import Product
+from .models import Product
 
 
 def product_list(request):
     products = Product.objects.all()
     context = {"products":products}
-    return render(request, "base.html ")
+    return render(request, "product_list.html", context)

@@ -1,11 +1,9 @@
-from django.contrib import admin
-from django.urls import path, include
-from django.conf import settings
-from django.conf.urls.static import static
+from django.urls import path
+from .views import product_list
 
-from myproject.store.apps import StoreConfig
-from myproject.store.views import product_list
 
-app_name = StoreConfig.name
+app_name = "store"
 
-urlpatterns = [path("", product_list)]
+urlpatterns = [
+    path('', product_list, name='product_list'),
+]
