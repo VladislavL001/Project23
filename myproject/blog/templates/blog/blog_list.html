@@ -1,0 +1,67 @@
+{% extends 'blog/base.html' %}
+{% load my_tags %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <!-- Заголовок -->
+    <h1 class="mb-4" style="font-weight:700;">Новости</h1>
+
+    <div class="row">
+
+        <!-- Основная колонка -->
+        <div class="col-md-8">
+
+            {% for blog in blogs %}
+            <div class="mb-4 pb-4 border-bottom">
+
+                <!-- Заголовок -->
+                <h3 style="font-weight:600;">
+                    <a href="{% url 'blog:blog_detail' blog.pk %}" style="text-decoration:none; color:#000;">
+                        {{ blog.title }}
+                    </a>
+                </h3>
+
+                <!-- Дата -->
+                <small class="text-muted">
+                    {{ blog.created_at }}
+                </small>
+
+                <!-- Контент -->
+                <p class="mt-2">
+                    {{ blog.content|truncatechars:150 }}
+                </p>
+
+                <!-- Превью -->
+                {% if blog.preview %}
+                    <img src="{{ blog.preview|media_filter }}" style="width:100%; max-height:250px; object-fit:cover;">
+                {% endif %}
+
+                <!-- Просмотры -->
+                <div class="mt-2 text-muted">
+                    👁 {{ blog.views_count }}
+                </div>
+
+            </div>
+            {% endfor %}
+
+        </div>
+
+        <!-- Боковая колонка -->
+        <div class="col-md-4">
+
+            <h5 style="font-weight:600;">Популярное</h5>
+
+            {% for blog in popular_blogs %}
+            <div class="mb-3">
+                <a href="{% url 'blog:blog_detail' blog.pk %}" style="text-decoration:none; color:#000;">
+                    {{ blog.title|truncatechars:60 }}
+                </a>
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}
