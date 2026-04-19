@@ -13,6 +13,8 @@
                                         <p class="card-text"> Цена: {{product.price}} руб</p>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="btn-group">
+                                                <a href="{% url 'store:product_update' product.pk %}" class="btn btn-sm btn-outline-secondary">Редактировать</a>
+                                                <a href="{% url 'store:product_delete' product.pk %}" class="btn btn-sm btn-outline-secondary">Удалить</a>
                                                 <a href="{% url 'store:product_list' %}" class="btn btn-sm btn-outline-secondary">Назад</a>
                                             </div>
                                             <small class="text-body-secondary">9 mins</small>
