@@ -3,11 +3,11 @@
 {% block content %}
 <div class="container mt-4">
 
-    <h2>Удаление статьи</h2>
+    <h2>Удаление товара</h2>
 
     <p>Ты точно хочешь удалить:</p>
 
-    <h4>{{ blog.title }}</h4>
+    <h4>{{ product.name }}</h4>
 
     <form method="post">
         {% csrf_token %}
@@ -16,4 +16,5 @@
     </form>
 
 </div>
+
 {% endblock %}
