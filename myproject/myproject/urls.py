@@ -19,11 +19,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from jedi.inference.value import namespace
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("store.urls", namespace="store")),
-    path("blog/", include("blog.urls", namespace="blog"))
+    path("blog/", include("blog.urls", namespace="blog")),
+    path("users/",include('users.urls', namespace='users'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

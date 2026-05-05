@@ -13,13 +13,21 @@
                                 <li>
                                     <a href="{% url 'store:product_list' %}" class="text-white">Главная</a>
                                 </li>
+                                {% if user.is_authenticated %}
                                 <li>
-                                    <a href="#" class="text-white">Вход</a>
+                                    <form method="post" action="{% url 'users:logout' %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-link text-white p-0">Выход</button>
+                                    </form>
+                                </li>
+                                {% else %}
+                                <li>
+                                    <a href="{% url 'users:login' %}">Вход</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="text-white">Регистрация</a>
+                                    <a href="{% url 'users:register' %}">Регистрация</a>
                                 </li>
-                                </li>
+                                {% endif %}
                                 <li>
                                     <a href="/blog" class="text-white">Блог</a>
                                 </li>
