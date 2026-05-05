@@ -1,0 +1,17 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <h2>{{ view.object|default_if_none:"Авторизация" }}</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-success">Зарегистрироваться</button>
+    </form>
+
+</div>
+{% endblock %}
