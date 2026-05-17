@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.conf import settings
 
 class Category(models.Model):
     """Модель категории товаров"""
@@ -50,11 +50,25 @@ class Product(models.Model):
         auto_now=True,  # Автоматически обновляется при сохранении
         verbose_name="Дата последнего изменения",
     )
+    is_published = models.BooleanField(default=True, verbose_name="статус публикации")
+
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name='Владелец',
+        blank=True,
+        null=True
+    )
 
     class Meta:
         verbose_name = "Товар"
         verbose_name_plural = "Товары"
-        ordering = ["name"]  # Сортировка по наименованию
+        ordering = ["name"] # Сортировка по наименованию
+        permissions  = [
+            ('can_unpublish_product', 'Can unpublish product')
+        ]
+
+
 
     def __str__(self):
         return self.name
