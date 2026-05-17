@@ -27,7 +27,6 @@ class ProductForm(forms.ModelForm):
             if word in description:
                 raise ValidationError(f'Запрещено использовать слово "{word}" в описании')
 
-
         return cleaned_data
 
     def clean_price(self):
@@ -77,3 +76,9 @@ class ProductForm(forms.ModelForm):
             raise ValidationError('Разрешены только JPEG и PNG')
 
         return image
+
+
+class ProductModeratorsForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ("is_published", )
