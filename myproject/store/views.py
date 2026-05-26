@@ -1,14 +1,14 @@
 from django.core.exceptions import PermissionDenied
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.decorators.cache import cache_page
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import ProductForm, ProductModeratorsForm
-from .models import Product
+from .models import Product, Category
 from django.utils.decorators import method_decorator
-
-from .services import get_products_from_cache
+from .services import get_products_from_cache, get_products_by_category
 
 
 class ProductListView(ListView):
@@ -62,3 +62,18 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
         if user.has_perm("store.can_unpublish_product") and user.has_perm("store.delete_product"):
             return ProductModeratorsForm
         raise PermissionDenied
+
+
+class CategoryProductListView(ListView):
+    model = Product
+    template_name = "store/category_products.html"
+    context_object_name = "products"
+
+    def get_queryset(self):
+        self.category = get_object_or_404(Category, pk=self.kwargs["category_id"])
+        return get_products_by_category(self.category.pk)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["category"] = self.category
+        return context
