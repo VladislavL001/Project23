@@ -19,6 +19,7 @@
                                                     <a href="{% url 'store:product_delete' product.pk %}" class="btn btn-sm btn-outline-secondary">Удалить</a>
                                                 {% endif %}
 
+                                                <a href="{% url 'store:category_products' product.category_id %}" class="btn btn-sm btn-outline-secondary">Товары категории</a>
                                                 <a href="{% url 'store:product_list' %}" class="btn btn-sm btn-outline-secondary">Назад</a>
                                             </div>
                                             <small class="text-body-secondary">9 mins</small>
