@@ -1,17 +1,25 @@
 from django.core.exceptions import PermissionDenied
 from django.urls import reverse_lazy
+from django.views.decorators.cache import cache_page
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import ProductForm, ProductModeratorsForm
 from .models import Product
+from django.utils.decorators import method_decorator
+
+from .services import get_products_from_cache
 
 
 class ProductListView(ListView):
     model = Product
     context_object_name = 'products'
 
+    def get_queryset(self):
+        return get_products_from_cache()
 
+
+@method_decorator(cache_page(60 * 15), name='dispatch')
 class ProductDetailView(DetailView):
     model = Product
     context_object_name = 'product'
